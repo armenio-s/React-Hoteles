@@ -5,7 +5,7 @@ import 'bulma'
 
 
 
-const today = new Date()
+const today = new Date();
 
 class App extends React.Component {
   constructor(props) {
