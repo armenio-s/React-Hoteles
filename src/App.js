@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './componentes/header';
 import Filters from './componentes/filters';
-import Hotel from './componentes/hotel';
+import Hotels from './componentes/hotels';
 import './App.css';
 import 'bulma';
 
@@ -18,8 +18,10 @@ class App extends React.Component {
       country: undefined, 
       price: undefined,
       rooms: undefined,
-      hotels: []
       },
+
+      hotels: [],
+      hotelsLoaded: false,
     };
 
     this.handleFilterChange = this.handleFilterChange.bind(this)
@@ -36,25 +38,28 @@ class App extends React.Component {
       }
       const json = await response.json();
       console.log({ hotels: json, hotelsLoaded: true });
+      this.setState({ hotels: json, hotelsLoaded: true });
       } 
       
       catch (err) {
       console.log(err);
-      }
+    }
   }
 
- handleFilterChange(payload) {
-  this.setState({
-    filters: payload
-  })
-}
+  handleFilterChange(payload) {
+    this.setState({
+      filters: payload
+    })
+  }
  
   render() {
+    const { hotels } = this.state;
+
     return (
       <div>
-        <Header filters = {this.state.filters}/>
-        <Filters filters = {this.state.filters} onFilterChange={ this.handleFilterChange } />
-        <Hotel hotels = {this.state.hotels} />
+        <Header filters = { this.state.filters }/>
+        <Filters filters = { this.state.filters } onFilterChange={ this.handleFilterChange } />
+        <Hotels> { hotels } </Hotels>
       </div>
     );
   }
