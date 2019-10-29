@@ -53,13 +53,13 @@ class App extends React.Component {
   }
  
   render() {
-    const { hotels } = this.state;
+    const { hotels, filters } = this.state;
 
     return (
       <div>
-        <Header filters = { this.state.filters }/>
-        <Filters filters = { this.state.filters } onFilterChange={ this.handleFilterChange } />
-        <Hotels> { hotels } </Hotels>
+        <Header filters = { filters }/>
+        <Filters filters = { filters } onFilterChange={ this.handleFilterChange } />
+        <Hotels hotels = { hotels } /> 
       </div>
     );
   }

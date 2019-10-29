@@ -9,16 +9,16 @@ class Hotel extends React.Component {
             <div className="card">
                 <div className="card-image">
                     <figure className="image is-4by3">
-                        <img src={this.props.children.photo} alt="" />
+                        <img src={this.props.hotel.photo} alt={this.props.hotel.slug} />
                     </figure>
                 </div>
                 <div className="card-content">
-                    <p className="title is-4">{this.props.name}</p>
-                    <p></p>
+                    <p className="title is-4">{this.props.hotel.name}</p>
+                    <p>{this.props.hotel.description}</p>
                     <div className="field is-grouped is-grouped-multiline" style={{marginTop: '1em'}}>
-                        <DataTag icon="globe"></DataTag>
-                        <DataTag icon="bed"></DataTag>
-                        <PriceTag></PriceTag>
+                        <DataTag icon="globe">{this.props.hotel.city}</DataTag>
+                        <DataTag icon="bed">{this.props.hotel.rooms}</DataTag>
+                        <PriceTag>{this.props.hotel.price}</PriceTag>
                     </div>
                 </div>
                 <div className="card-footer">

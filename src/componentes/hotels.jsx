@@ -4,17 +4,19 @@ import Hotel from './hotel';
 class Hotels extends React.Component {
    
     render() {
+        let i = 0;
         return(
             <section className="section" style={ {marginTop: '3em'} }>
                 <div className="container">
                     <div className="columns is-multiline">
-                        { this.props.children.length ? (
-                            this.props.children.map(hotels => (
-                                console.log(hotels),
-                                <div className="column is-one-third">
-                                    <Hotel data={ hotels } />
-                                </div>
-                            ))
+                        { this.props.hotels.length ? (
+                            this.props.hotels.map(hotel => 
+                                (
+                                    <div className="column is-one-third" key={ i++ }>
+                                        <Hotel hotel={ hotel } />
+                                    </div>
+                                )
+                            )
                         ) : (
                             <article className="message is-warning">
                                 <div className="message-body">
