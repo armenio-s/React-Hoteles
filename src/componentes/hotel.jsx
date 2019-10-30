@@ -18,7 +18,7 @@ class Hotel extends React.Component {
                     <div className="field is-grouped is-grouped-multiline" style={{marginTop: '1em'}}>
                         <DataTag icon="globe">{this.props.hotel.city}</DataTag>
                         <DataTag icon="bed">{this.props.hotel.rooms}</DataTag>
-                        <PriceTag>{this.props.hotel.price}</PriceTag>
+                        <PriceTag count={this.props.hotel.price}/>
                     </div>
                 </div>
                 <div className="card-footer">

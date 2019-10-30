@@ -1,22 +1,18 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+/*Hacer que todas las cards tengan el mismo alto*/
+.card {
+  display:flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100%;
 }
 
-.App-link {
-  color: #09d3ac;
+.card-footer {
+  margin-top: auto;
+}
+
+.resultados {
+  margin-bottom: 25px;
+}
+
+section.section {
+  margin-top: 20px!important;
 }

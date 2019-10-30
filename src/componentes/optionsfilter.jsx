@@ -11,6 +11,7 @@ class OptionsFilter extends React.Component {
     }
   
     render() {
+      let i = 0;
       return (
         <div className="field">
           <div className="control has-icons-left">
@@ -22,7 +23,7 @@ class OptionsFilter extends React.Component {
                 >
                 { this.props.options.map((option) => <option 
                 value={ option.value || '' } 
-                key={ option.value }>
+                key={ i++ }>
                 { option.name }
                 </option> ) }
               </select>

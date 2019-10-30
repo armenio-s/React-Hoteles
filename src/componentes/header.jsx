@@ -9,8 +9,8 @@ class Header extends React.Component {
                     <div className="container">
                         <h1 className="title">Hoteles</h1>
                         <h2 className="subtitle">
-                            desde el <strong>{filters.dateFrom.toLocaleString('es-AR',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </strong> 
-                            hasta el <strong>{filters.dateTo.toLocaleString('es-AR',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</strong>
+                            desde el <strong>{ filters.dateFrom } </strong> 
+                            hasta el <strong>{ filters.dateTo }</strong>
                         </h2>
                         <p>
                             { filters.country ? ` en ${filters.country}` : '' }
