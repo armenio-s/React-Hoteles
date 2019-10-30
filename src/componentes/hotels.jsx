@@ -8,10 +8,10 @@ class Hotels extends React.Component {
         return(
             <section className="section" style={ {marginTop: '3em'} }>
                 <div className="container">
-                <p className="resultados">Se han encontrado: {this.props.hotels.length} hoteles</p>
+                <p className="resultados">Se han encontrado: {this.props.hotelsFiltered.length} hoteles</p>
                     <div className="columns is-multiline">
-                        { this.props.hotels.length ? (
-                            this.props.hotels.map(hotel => 
+                        { this.props.hotelsFiltered.length ? (
+                            this.props.hotelsFiltered.map(hotel => 
                                 (
                                     <div className="column is-one-third" key={ i++ }>
                                         <Hotel hotel={ hotel } />

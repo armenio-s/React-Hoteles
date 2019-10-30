@@ -8,33 +8,51 @@ import 'moment/locale/es';
 
 import './App.css';
 import 'bulma';
+import hotelsService from './services/hotelsApi';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     const today = new Date();
-    const dateFrom = Moment(today).format('LL')
-    const dateTo = Moment(today).add(1, 'month').format('LL')
+    const todayFormatted = Moment(today).format('YYYY-MM-DD')
+    const nextMonthFormatted = Moment(today).add(1, 'month').format('YYYY-MM-DD')
 
     this.state =  {
+      fetching: true,
+      hotels: [],
+      hotelsFiltered: [],
+
       filters: {
-      dateFrom: dateFrom, 
-      dateTo: dateTo,
+      dateFrom: todayFormatted, 
+      dateTo: nextMonthFormatted,
       country: undefined, 
       price: undefined,
       rooms: undefined,
       },
-
-      hotels: [],
-      hotelsLoaded: false,
-      hotelsFiltered: [],
     };
 
     this.handleFilterChange = this.handleFilterChange.bind(this)
   }
 
-  async componentDidMount() {
+  handleFilterChange(payload) {
+    console.log(payload)
+    const hotelsFiltered = hotelsService.filterHotels(this.state.hotels, payload);
+    this.setState({
+      filters: payload,
+      hotelsFiltered,
+    })
+
+    console.log(this.state);
+  }
+
+  componentDidMount() {
+    hotelsService.getHotels().then(hotels => this.setState({ hotels, hotelsFiltered: hotels, fetching: false}));
+
+    console.log(this.state.hotels);
+  }
+
+  /*async componentDidMount() {
     try {
       const response = await fetch(
         "https://wt-8a099f3e7c73b2d17f4e018b6cfd6131-0.sandbox.auth0-extend.com/acamica"
@@ -44,7 +62,7 @@ class App extends React.Component {
         throw Error(response.statusText);
       }
       const json = await response.json();
-      console.log({ hotels: json, hotelsLoaded: true });
+      console.log({ hotels: json, fetching: true });
       this.setState({ 
         hotels: json, 
         hotelsLoaded: true });
@@ -53,21 +71,21 @@ class App extends React.Component {
       catch (err) {
       console.log(err);
     }
-    /*this.filterHotels().then(hotels => this.setState({hotels, hotelsFiltered: hotels}))*/
-  }
+    /*this.filterHotels().then(hotels => this.setState({hotels, hotelsFiltered: hotels}))
+  }*/
 
 
-  handleFilterChange(payload) {
+  /*handleFilterChange(payload) {
     const hotelsFiltered = this.filterHotels(this.state.hotels, payload)
     this.setState({
       filters: payload,
       hotelsFiltered,
     })
     console.log(hotelsFiltered)
-  }
+  }*/
   
 
-  filterHotels (hotels, payload) {
+  /*filterHotels (hotels, payload) {
     let {dateFrom, dateTo, country, price, rooms} = payload
     return hotels.filter(hotels => {
       return Moment(hotels.availabilityFrom).format('YYYY-MM-DD') >= dateFrom
@@ -76,16 +94,16 @@ class App extends React.Component {
       && hotels.price === (price !== 'select' ? parseInt(price) : hotels.price)
       && hotels.country.trim().toLowerCase() === (country !== 'select' ? country.trim().toLowerCase() : hotels.country.trim().toLowerCase())
     })
-  }
+  }*/
  
   render() {
-    const { hotels,filters } = this.state;
+    const { hotelsFiltered, filters } = this.state;
     
     return (
       <div>
         <Header filters = { filters }/>
         <Filters filters = { filters } onFilterChange={ this.handleFilterChange } />
-        <Hotels hotels = { hotels } /> 
+        <Hotels hotelsFiltered = { hotelsFiltered } /> 
       </div>
     );
   }
