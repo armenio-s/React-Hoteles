@@ -1,6 +1,6 @@
-# Proyecto de Hoteles con filtros de búsqueda desarrollado en React
+## Proyecto de Hoteles con filtros de búsqueda desarrollado en React
 
-## Available Scripts
+### Available Scripts
 
 Utilizar el siguiente comando en el directorio del proyecto:
 
