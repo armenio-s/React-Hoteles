@@ -15,8 +15,6 @@ class App extends React.Component {
     super(props);
 
     const today = new Date();
-    const todayFormatted = Moment(today).format('YYYY-MM-DD')
-    const nextMonthFormatted = Moment(today).add(1, 'month').format('YYYY-MM-DD')
 
     this.state =  {
       fetching: true,
@@ -24,11 +22,11 @@ class App extends React.Component {
       hotelsFiltered: [],
 
       filters: {
-      dateFrom: todayFormatted, 
-      dateTo: nextMonthFormatted,
-      country: undefined, 
-      price: undefined,
-      rooms: undefined,
+      dateFrom: Moment(today), 
+      dateTo: Moment(today).add(1, 'month'),
+      country: '', 
+      price: '',
+      rooms: '',
       },
     };
 
@@ -36,11 +34,12 @@ class App extends React.Component {
   }
 
   handleFilterChange(payload) {
-    console.log(payload)
+    console.log("Payload"); console.log(payload)
     const hotelsFiltered = hotelsService.filterHotels(this.state.hotels, payload);
+    console.log("hotelsFiltered"); console.log(hotelsFiltered)
     this.setState({
       filters: payload,
-      hotelsFiltered,
+      hotelsFiltered: hotelsFiltered,
     })
 
     console.log(this.state);
@@ -51,50 +50,6 @@ class App extends React.Component {
 
     console.log(this.state.hotels);
   }
-
-  /*async componentDidMount() {
-    try {
-      const response = await fetch(
-        "https://wt-8a099f3e7c73b2d17f4e018b6cfd6131-0.sandbox.auth0-extend.com/acamica"
-      );
-      
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      const json = await response.json();
-      console.log({ hotels: json, fetching: true });
-      this.setState({ 
-        hotels: json, 
-        hotelsLoaded: true });
-      }
-      
-      catch (err) {
-      console.log(err);
-    }
-    /*this.filterHotels().then(hotels => this.setState({hotels, hotelsFiltered: hotels}))
-  }*/
-
-
-  /*handleFilterChange(payload) {
-    const hotelsFiltered = this.filterHotels(this.state.hotels, payload)
-    this.setState({
-      filters: payload,
-      hotelsFiltered,
-    })
-    console.log(hotelsFiltered)
-  }*/
-  
-
-  /*filterHotels (hotels, payload) {
-    let {dateFrom, dateTo, country, price, rooms} = payload
-    return hotels.filter(hotels => {
-      return Moment(hotels.availabilityFrom).format('YYYY-MM-DD') >= dateFrom
-      && Moment(hotels.availabilityTo).format('YYYY-MM-DD') <= dateTo
-      && hotels.rooms === (rooms !== 'select' ? rooms : hotels.rooms)
-      && hotels.price === (price !== 'select' ? parseInt(price) : hotels.price)
-      && hotels.country.trim().toLowerCase() === (country !== 'select' ? country.trim().toLowerCase() : hotels.country.trim().toLowerCase())
-    })
-  }*/
  
   render() {
     const { hotelsFiltered, filters } = this.state;

@@ -11,12 +11,13 @@ class hotelsService {
 
     static filterHotels (hotels, payload) {
         let {dateFrom, dateTo, country, price, rooms} = payload
+        
         return hotels.filter(hotels => {
-          return Moment(hotels.availabilityFrom).format('YYYY-MM-DD') >= dateFrom
-          && Moment(hotels.availabilityTo).format('YYYY-MM-DD') <= dateTo
-          && hotels.rooms === (rooms !== 'select' ? rooms : hotels.rooms)
-          && hotels.price === (price !== 'select' ? parseInt(price) : hotels.price)
-          && hotels.country.trim().toLowerCase() === (country !== 'select' ? country.trim().toLowerCase() : hotels.country.trim().toLowerCase())
+            return Moment(hotels.availabilityFrom).format('LL') >= Moment(dateFrom).format('LL')
+            && Moment(hotels.availabilityTo).format('LL') <= Moment(dateTo).format('LL')
+            && hotels.rooms <= (rooms !== undefined && rooms !== '' ? rooms : hotels.rooms)
+            && hotels.price === (price !== undefined && price !== '' ? parseInt(price) : hotels.price)
+            && hotels.country === (country !== undefined && country !== '' ? country : hotels.country)
         })
     }
 }
