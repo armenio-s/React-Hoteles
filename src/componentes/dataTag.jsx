@@ -11,4 +11,4 @@ function DataTag(props) {
     )
   }
 
-  export default DataTag;
+export default DataTag;
