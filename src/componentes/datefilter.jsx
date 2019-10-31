@@ -5,7 +5,7 @@ const DateFilter = (props) => {
     return (
         <div className="field">
             <div className="control has-icons-left">
-                <input className="input" type="date" onChange={ onDateChange } date={ date } name={ name } />
+                <input className="input" type="date" onChange={ onDateChange } value={ date } name={ name } />
                 <span className="icon is-small is-left">
                     <i className={ `fas fa-${icon}` }></i>
                 </span>

@@ -22,8 +22,8 @@ class App extends React.Component {
       hotelsFiltered: [],
 
       filters: {
-      dateFrom: Moment(today), 
-      dateTo: Moment(today).add(1, 'month'),
+      dateFrom: Moment(today).format('YYYY-MM-DD'), 
+      dateTo: Moment(today).add(1, 'month').format('YYYY-MM-DD'),
       country: '', 
       price: '',
       rooms: '',
@@ -34,9 +34,7 @@ class App extends React.Component {
   }
 
   handleFilterChange(payload) {
-    console.log("Payload"); console.log(payload)
     const hotelsFiltered = hotelsService.filterHotels(this.state.hotels, payload);
-    console.log("hotelsFiltered"); console.log(hotelsFiltered)
     this.setState({
       filters: payload,
       hotelsFiltered: hotelsFiltered,
@@ -46,9 +44,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    hotelsService.getHotels().then(hotels => this.setState({ hotels, hotelsFiltered: hotels, fetching: false}));
+    hotelsService.getHotels().then(hotels => this.setState({ 
+      hotels, 
+      hotelsFiltered: hotels, 
+      fetching: false, 
+      })
+    );
 
-    console.log(this.state.hotels);
+    console.log(this.state.filters);
   }
  
   render() {
