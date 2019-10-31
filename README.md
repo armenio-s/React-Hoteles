@@ -1,8 +1,8 @@
-Proyecto de Hoteles con filtros de búsqueda desarrollado en React
+# Proyecto de Hoteles con filtros de búsqueda desarrollado en React
 
 ## Available Scripts
 
-utilizar el siguiente comando en el directorio del proyecto:
+Utilizar el siguiente comando en el directorio del proyecto:
 
 ### `npm start`
 
