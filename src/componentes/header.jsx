@@ -15,8 +15,8 @@ class Header extends React.Component {
                             desde el <strong>{ Moment(filters.dateFrom).format('LL') } </strong> 
                             hasta el <strong>{ Moment(filters.dateTo).format('LL') }</strong>
                         </h2>
-                        <p>
-                            { filters.country !== '' ? ` en ${filters.country}` : '' }
+                        <p className="subtitle">
+                            { filters.country !== '' ? ` en ${filters.country} ` : '' }
                             { filters.price !== '' ? ` por ${'$'.repeat(filters.price)}` : '' }
                             { filters.rooms !== '' ? ` de hasta ${filters.rooms} habitaciones` : '' }
                         </p>

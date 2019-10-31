@@ -22,7 +22,7 @@ class Hotel extends React.Component {
                     </div>
                 </div>
                 <div className="card-footer">
-                    <a href="aa" className="card-footer-item has-background-primary has-text-white has-text-weight-bold">Reservar</a>
+                    <button onClick={()=>{ alert("Aún no tenemos disponible esta funcionalidad"); }} className="card-footer-item has-background-primary has-text-white has-text-weight-bold">Reservar</button>
                 </div>
             </div>
         )
