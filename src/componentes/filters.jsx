@@ -19,7 +19,6 @@ class Filters extends React.Component {
     }
   
     render() {
-      console.log('filters'); console.log(this.props.filters.dateFrom);
       return (
         <nav className="navbar is-info" style={ {justifyContent: 'center'} }>
           <div className="navbar-item">

@@ -39,8 +39,6 @@ class App extends React.Component {
       filters: payload,
       hotelsFiltered: hotelsFiltered,
     })
-
-    console.log(this.state);
   }
 
   componentDidMount() {
@@ -50,8 +48,6 @@ class App extends React.Component {
       fetching: false, 
       })
     );
-
-    console.log(this.state.filters);
   }
  
   render() {
